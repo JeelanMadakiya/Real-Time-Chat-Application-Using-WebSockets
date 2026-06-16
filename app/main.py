@@ -6,6 +6,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import and_, or_
 from sqlalchemy.orm import Session
+from typing import Optional
 
 from app.auth import (
     create_access_token,
@@ -286,7 +287,12 @@ async def deliver_event(event: dict) -> None:
         await manager.broadcast_users(list(manager.active_connections.keys()), event)
 
 
-def serialize_message(event_type: str, message: Message, sender_name: str, recipient_name: str | None) -> dict:
+def serialize_message(
+    event_type: str,
+    message: Message,
+    sender_name: str,
+    recipient_name: Optional[str],
+) -> dict:
     return {
         "type": event_type,
         "id": message.id,
