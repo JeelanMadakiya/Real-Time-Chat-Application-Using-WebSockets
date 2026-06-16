@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from typing import Optional
 from pydantic import BaseModel, Field
 
 
@@ -30,13 +30,13 @@ class UserResponse(BaseModel):
 
 class RoomCreate(BaseModel):
     name: str = Field(min_length=2, max_length=80)
-    description: str | None = Field(default=None, max_length=255)
+   description: Optional[str] = Field(default=None, max_length=255)
 
 
 class RoomResponse(BaseModel):
     id: int
     name: str
-    description: str | None
+    description: Optional[str]
     created_by_id: int
     created_at: datetime
 
@@ -46,8 +46,8 @@ class RoomResponse(BaseModel):
 class MessageResponse(BaseModel):
     id: int
     sender_id: int
-    recipient_id: int | None
-    room_id: int | None
+    recipient_id: Optional[int]
+    room_id: Optional[int]
     content: str
     is_read: bool
     created_at: datetime
