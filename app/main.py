@@ -68,15 +68,30 @@ def index() -> FileResponse:
 
 @app.post("/auth/register", response_model=TokenResponse)
 def register(payload: RegisterRequest, db: Session = Depends(get_db)) -> TokenResponse:
+
+    print("USERNAME:", payload.username)
+    print("PASSWORD:", repr(payload.password))
+    print("PASSWORD LENGTH:", len(payload.password))
+
     existing = db.query(User).filter(User.username == payload.username).first()
+
     if existing:
         raise HTTPException(status_code=409, detail="Username already exists")
 
-    user = User(username=payload.username, password_hash=hash_password(payload.password))
+    user = User(
+        username=payload.username,
+        password_hash=hash_password(payload.password)
+    )
+
     db.add(user)
     db.commit()
+
     token = create_access_token(user.username)
-    return TokenResponse(access_token=token, username=user.username)
+
+    return TokenResponse(
+        access_token=token,
+        username=user.username
+    )
 
 
 @app.post("/auth/login", response_model=TokenResponse)
