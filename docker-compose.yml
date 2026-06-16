@@ -1,0 +1,7 @@
+services:
+  redis:
+    image: redis:7
+    container_name: realtime-chat-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped

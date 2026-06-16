@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TalkSync</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="auth-panel" id="authPanel">
+      <div class="brand-mark">TS</div>
+      <h1>TalkSync</h1>
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" autocomplete="username" placeholder="your name">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="minimum 6 characters">
+      </div>
+      <div class="actions">
+        <button id="loginBtn">Log in</button>
+        <button id="registerBtn" class="secondary">Register</button>
+      </div>
+      <p id="authMessage" class="status"></p>
+    </section>
+
+    <section class="chat-panel hidden" id="chatPanel">
+      <aside class="sidebar">
+        <div class="profile">
+          <div>
+            <span class="eyebrow">Signed in</span>
+            <strong id="me"></strong>
+          </div>
+          <span id="connectionState" class="presence-dot">offline</span>
+        </div>
+
+        <div class="create-room">
+          <input id="roomName" placeholder="new group room">
+          <button id="createRoomBtn" title="Create room">Create</button>
+        </div>
+
+        <h2>People</h2>
+        <div id="usersList" class="list"></div>
+
+        <h2>Rooms</h2>
+        <div id="roomsList" class="list"></div>
+      </aside>
+
+      <section class="conversation">
+        <header>
+          <div>
+            <h2 id="chatTitle">Select a user or room</h2>
+            <p id="typingLine"></p>
+          </div>
+          <button id="logoutBtn" class="secondary">Logout</button>
+        </header>
+        <div id="messages" class="messages"></div>
+        <form id="messageForm" class="composer">
+          <input id="messageInput" placeholder="Type a message" disabled>
+          <button id="sendBtn" disabled>Send</button>
+        </form>
+      </section>
+    </section>
+  </main>
+  <script src="/static/app.js?v=4"></script>
+</body>
+</html>
