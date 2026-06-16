@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field
 
+from pydantic import BaseModel, Field
 
 
 class RegisterRequest(BaseModel):
@@ -31,7 +31,7 @@ class UserResponse(BaseModel):
 
 class RoomCreate(BaseModel):
     name: str = Field(min_length=2, max_length=80)
-   description: Optional[str] = Field(default=None, max_length=255)
+    description: Optional[str] = Field(default=None, max_length=255)
 
 
 class RoomResponse(BaseModel):
