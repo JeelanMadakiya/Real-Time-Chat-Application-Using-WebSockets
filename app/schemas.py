@@ -3,14 +3,15 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
+
 class RegisterRequest(BaseModel):
     username: str = Field(min_length=3, max_length=50)
-    password: str = Field(min_length=6, max_length=128)
+    password: str = Field(min_length=6, max_length=72)
 
 
 class LoginRequest(BaseModel):
     username: str
-    password: str
+    password: str = Field(max_length=72)
 
 
 class TokenResponse(BaseModel):
